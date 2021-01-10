@@ -1,0 +1,26 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+$form-inputs-width: 185px;
+
+.add-new-todo{
+    margin: 20px 40px;
+    li{
+        list-style: none;
+        margin-bottom: 10px;
+        input{
+            width: $form-inputs-width;
+        }
+        select{
+            width: $form-inputs-width;
+        }
+        textarea{
+            width: $form-inputs-width;
+            resize: none;
+        }
+    }
+    
+}
