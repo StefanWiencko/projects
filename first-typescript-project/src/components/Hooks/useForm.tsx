@@ -1,6 +1,18 @@
-import {useState} from 'react'
+import { useState } from "react";
 
-export const useForm  = <T extends {}>(initialvalues: T)=>{
-    const [values,setValues] = useState(initialvalues)
-    return [values, (e:React.ChangeEvent<HTMLInputElement>) => setValues({...values,[e.target.name]:e.target.value})]
-}
+export const useForm: <T>(
+  x: T
+) => [
+  T,
+  (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => void
+] = (initialvalues) => {
+  const [values, setValues] = useState(initialvalues);
+  return [
+    values,
+    (e) => setValues({ ...values, [e.target.name]: e.target.value }),
+  ];
+};

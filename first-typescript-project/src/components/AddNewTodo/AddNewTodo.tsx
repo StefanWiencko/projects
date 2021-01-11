@@ -10,25 +10,44 @@ export const AddNewTodo: FunctionComponent = () => {
     msg: "",
   });
 
-  console.log(value);
   return (
     <form className="add-new-todo">
       <ul>
         <li>
           <label htmlFor="name"></label>
-          <input value={value.name} type="text" name="name" />
+          <input
+            value={value.name}
+            onChange={setValue}
+            type="text"
+            name="name"
+          />
         </li>
         <li>
           <label htmlFor="surname"></label>
-          <input value={value.surname} type="text" name="surname" />
+          <input
+            value={value.surname}
+            onChange={setValue}
+            type="text"
+            name="surname"
+          />
         </li>
         <li>
           <label htmlFor="email"></label>
-          <input value={value.email} type="email" name="email" />
+          <input
+            value={value.email}
+            onChange={setValue}
+            type="email"
+            name="email"
+          />
         </li>
         <li>
           <label htmlFor="function"></label>
-          <select value={value.function} name="function" id="function">
+          <select
+            value={value.function}
+            onChange={setValue}
+            name="function"
+            id="function"
+          >
             <option value="">Wybierz funkcje...</option>
             <option value="master">Master</option>
             <option value="promotor">Promotor</option>
@@ -37,7 +56,7 @@ export const AddNewTodo: FunctionComponent = () => {
         </li>
         <li>
           <label htmlFor="msg"></label>
-          <textarea value={value.msg} name="msg" />
+          <textarea value={value.msg} onChange={setValue} name="msg" />
         </li>
         <li>
           <input type="submit" name="submit" />
