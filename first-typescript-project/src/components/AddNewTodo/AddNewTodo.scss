@@ -1,0 +1,25 @@
+.add-new-todo {
+  margin: 20px 40px;
+  ul {
+    display: flex;
+    flex-direction: column;
+    li {
+      margin: 0 auto;
+      list-style: none;
+      margin-bottom: 10px;
+      input {
+        width: $form-inputs-width;
+        height: 25px;
+      }
+      select {
+        width: $form-inputs-width;
+        height: 25px;
+      }
+      textarea {
+        width: $form-inputs-width;
+        resize: none;
+        height: 70px;
+      }
+    }
+  }
+}

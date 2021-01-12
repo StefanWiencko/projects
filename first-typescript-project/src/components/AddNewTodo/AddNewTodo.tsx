@@ -1,7 +1,19 @@
-import { FunctionComponent } from "react";
+import React, { FC, FormEvent } from "react";
 import { useForm } from "../Hooks/useForm";
 
-export const AddNewTodo: FunctionComponent = () => {
+type TodoType = {
+  name: string;
+  surname: string;
+  email: string;
+  function: string;
+  msg: string;
+};
+
+interface AddNewTodoProps {
+  addTodoHandler: (x: TodoType) => void;
+}
+
+export const AddNewTodo: FC<AddNewTodoProps> = ({ addTodoHandler }) => {
   const [value, setValue] = useForm({
     name: "",
     surname: "",
@@ -9,9 +21,12 @@ export const AddNewTodo: FunctionComponent = () => {
     function: "",
     msg: "",
   });
-
+  const submitHandler = (event: FormEvent): void => {
+    event.preventDefault();
+    addTodoHandler(value);
+  };
   return (
-    <form className="add-new-todo">
+    <form onSubmit={submitHandler} className="add-new-todo">
       <ul>
         <li>
           <label htmlFor="name"></label>
