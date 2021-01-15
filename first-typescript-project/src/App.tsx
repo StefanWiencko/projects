@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { AddNewTodo } from "./components/AddNewTodo/AddNewTodo";
-import { ActiveTodos } from "./components/ActiveTodos/Activetodos";
+import { Todos } from "./components/Todos/Todos";
+import clock from "./assets/logo-clock-in-a-fire-vector-5271403.jpg";
 import "./sass/main.scss";
 
 type TodoType = {
@@ -19,12 +20,17 @@ export const App: FC = () => {
   };
 
   return (
-    <div className="App">
-      <AddNewTodo addTodoHandler={addTodoHandler} />
-      <main>
-        <ActiveTodos activeTodoList={activeTodosList} />
-      </main>
-    </div>
+    <>
+      <header>
+        <h1>ORGANIZE YOUR TIME EFFICIENTLY</h1>
+        <img src={clock} alt="clock" />
+      </header>
+      <div className="app">
+        <AddNewTodo addTodoHandler={addTodoHandler} />
+        <Todos activeTodoList={activeTodosList} sectionTitle="Active Todos" />
+        <Todos activeTodoList={[]} sectionTitle="Finished Todos" />
+      </div>
+    </>
   );
 };
 

@@ -8,26 +8,30 @@ interface TodoType {
   msg: string;
 }
 
-type ActivetodosProps = {
+type ActiveTodosProps = {
   activeTodoList: TodoType[] | undefined;
+  sectionTitle: string;
 };
 
-export const ActiveTodos: FC<ActivetodosProps> = ({ activeTodoList }) => {
+export const Todos: FC<ActiveTodosProps> = ({
+  activeTodoList,
+  sectionTitle,
+}) => {
   return (
-    <section className="active--todos">
+    <section className="todos">
       <div>
-        <strong>Todos</strong>
+        <strong>{sectionTitle}</strong>
       </div>
-      <p>
-        {activeTodoList?.map((listItem) => {
+      <p className="todo-content-box">
+        {activeTodoList?.map((listItem, i) => {
           return (
             <>
-              <ul>
+              <ul key={i} id={`a--todo--${i}`}>
                 <li>{listItem.name + " " + listItem.surname}</li>
                 <li>{listItem.email}</li>
                 <li>{listItem.function}</li>
+                <p>{listItem.msg}</p>
               </ul>
-              <p>{listItem.msg}</p>
             </>
           );
         })}

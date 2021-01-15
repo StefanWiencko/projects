@@ -29,7 +29,7 @@ export const AddNewTodo: FC<AddNewTodoProps> = ({ addTodoHandler }) => {
     <form onSubmit={submitHandler} className="add-new-todo">
       <ul>
         <li>
-          <label htmlFor="name"></label>
+          <label htmlFor="name">Name</label>
           <input
             value={value.name}
             onChange={setValue}
@@ -38,7 +38,7 @@ export const AddNewTodo: FC<AddNewTodoProps> = ({ addTodoHandler }) => {
           />
         </li>
         <li>
-          <label htmlFor="surname"></label>
+          <label htmlFor="surname">Surname</label>
           <input
             value={value.surname}
             onChange={setValue}
@@ -47,7 +47,7 @@ export const AddNewTodo: FC<AddNewTodoProps> = ({ addTodoHandler }) => {
           />
         </li>
         <li>
-          <label htmlFor="email"></label>
+          <label htmlFor="email">Email</label>
           <input
             value={value.email}
             onChange={setValue}
@@ -56,7 +56,7 @@ export const AddNewTodo: FC<AddNewTodoProps> = ({ addTodoHandler }) => {
           />
         </li>
         <li>
-          <label htmlFor="function"></label>
+          <label htmlFor="function">Occupation</label>
           <select
             value={value.function}
             onChange={setValue}
@@ -70,11 +70,16 @@ export const AddNewTodo: FC<AddNewTodoProps> = ({ addTodoHandler }) => {
           </select>
         </li>
         <li>
-          <label htmlFor="msg"></label>
+          <label htmlFor="msg">Message</label>
           <textarea value={value.msg} onChange={setValue} name="msg" />
         </li>
         <li>
           <input type="submit" name="submit" />
+        </li>
+        <li>
+          <div className="error1" style={{ visibility: "hidden" }}>
+            <p>Błąd: Nie wypełniłeś wszystkich pól</p>
+          </div>
         </li>
       </ul>
     </form>
