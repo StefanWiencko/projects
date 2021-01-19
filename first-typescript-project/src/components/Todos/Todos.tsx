@@ -1,4 +1,6 @@
-import { FC } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
+import check from "../../assets/check.svg";
+import cancel from "../../assets/cancel.svg";
 
 interface TodoType {
   name: string;
@@ -9,30 +11,48 @@ interface TodoType {
 }
 
 type ActiveTodosProps = {
-  activeTodoList: TodoType[] | undefined;
+  todoList: TodoType[] | undefined;
   sectionTitle: string;
+  onClickHandler: (x: TodoType) => void;
+  spliceHandler: Dispatch<SetStateAction<TodoType[]>>;
 };
 
 export const Todos: FC<ActiveTodosProps> = ({
-  activeTodoList,
+  todoList,
   sectionTitle,
+  onClickHandler,
+  spliceHandler,
 }) => {
+  const setIcon = (prop: string) => {
+    if (prop === "Active Todos") return check;
+    if (prop === "Finished Todos") return cancel;
+  };
+
   return (
     <section className="todos">
       <div>
         <strong>{sectionTitle}</strong>
       </div>
       <p className="todo-content-box">
-        {activeTodoList?.map((listItem, i) => {
+        {todoList?.map((listItem, i) => {
           return (
-            <>
-              <ul key={i} id={`a--todo--${i}`}>
-                <li>{listItem.name + " " + listItem.surname}</li>
-                <li>{listItem.email}</li>
-                <li>{listItem.function}</li>
-                <p>{listItem.msg}</p>
-              </ul>
-            </>
+            <ul key={i} id={`a--todo--${i}`}>
+              <li>{listItem.name + " " + listItem.surname}</li>
+              <li>{listItem.email}</li>
+              <li>{listItem.function}</li>
+              <p>{listItem.msg}</p>
+              <button
+                style={{ backgroundImage: `url(${setIcon(sectionTitle)})` }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onClickHandler(listItem);
+                  spliceHandler(() => {
+                    console.log(i);
+                    return todoList.splice(i);
+                  });
+                }}
+              ></button>
+            </ul>
           );
         })}
       </p>

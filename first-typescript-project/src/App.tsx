@@ -14,9 +14,13 @@ type TodoType = {
 
 export const App: FC = () => {
   const [activeTodosList, setActiveTodosList] = useState<TodoType[]>([]);
+  const [finishedTodosList, setFinishedTodosList] = useState<TodoType[]>([]);
 
   const addTodoHandler: (x: TodoType) => void = (todoObject) => {
     setActiveTodosList((): TodoType[] => [...activeTodosList, todoObject]);
+  };
+  const activeTodoHandler: (x: TodoType) => void = (todoObject) => {
+    setFinishedTodosList((): TodoType[] => [...finishedTodosList, todoObject]);
   };
 
   return (
@@ -27,8 +31,18 @@ export const App: FC = () => {
       </header>
       <div className="app">
         <AddNewTodo addTodoHandler={addTodoHandler} />
-        <Todos activeTodoList={activeTodosList} sectionTitle="Active Todos" />
-        <Todos activeTodoList={[]} sectionTitle="Finished Todos" />
+        <Todos
+          todoList={activeTodosList}
+          onClickHandler={activeTodoHandler}
+          spliceHandler={setActiveTodosList}
+          sectionTitle="Active Todos"
+        />
+        <Todos
+          todoList={finishedTodosList}
+          onClickHandler={addTodoHandler}
+          spliceHandler={setActiveTodosList}
+          sectionTitle="Finished Todos"
+        />
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-import React, { FC, FormEvent } from "react";
+import { FC, FormEvent, useState } from "react";
 import { useForm } from "../Hooks/useForm";
 
 type TodoType = {
@@ -21,9 +21,22 @@ export const AddNewTodo: FC<AddNewTodoProps> = ({ addTodoHandler }) => {
     function: "",
     msg: "",
   });
+  const [isValid, setIsValid] = useState(true);
+
   const submitHandler = (event: FormEvent): void => {
     event.preventDefault();
+    if (
+      value.name === "" ||
+      value.surname === "" ||
+      value.email === "" ||
+      value.function === "" ||
+      value.msg === ""
+    ) {
+      setIsValid(false);
+      return;
+    }
     addTodoHandler(value);
+    setIsValid(true);
   };
   return (
     <form onSubmit={submitHandler} className="add-new-todo">
@@ -77,7 +90,12 @@ export const AddNewTodo: FC<AddNewTodoProps> = ({ addTodoHandler }) => {
           <input type="submit" name="submit" />
         </li>
         <li>
-          <div className="error1" style={{ visibility: "hidden" }}>
+          <div
+            className="error1"
+            style={
+              isValid ? { visibility: "hidden" } : { visibility: "visible" }
+            }
+          >
             <p>Błąd: Nie wypełniłeś wszystkich pól</p>
           </div>
         </li>

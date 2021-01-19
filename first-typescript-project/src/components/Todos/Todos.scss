@@ -16,12 +16,14 @@
     height: 30px;
   }
   .todo-content-box {
+    overflow-x: hidden;
     overflow-y: auto;
     width: 100%;
     ul {
       padding: 10px 5px;
       font-size: 1.6rem;
       width: 300px;
+      position: relative;
       li {
         margin-bottom: 5px;
         list-style: none;
@@ -29,6 +31,23 @@
       }
       p {
         word-wrap: normal;
+        overflow-x: hidden;
+      }
+      button {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        top: 20px;
+        right: 20px;
+        border: none;
+        border-radius: 20px;
+        &:focus {
+          outline: none;
+        }
+        &:active {
+          outline: none;
+          background-color: rgba(204, 198, 198, 1.137);
+        }
       }
     }
   }
