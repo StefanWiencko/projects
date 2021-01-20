@@ -8,6 +8,7 @@ interface TodoType {
   email: string;
   function: string;
   msg: string;
+  id: number;
 }
 
 type ActiveTodosProps = {
@@ -47,7 +48,6 @@ export const Todos: FC<ActiveTodosProps> = ({
                   e.preventDefault();
                   onClickHandler(listItem);
                   spliceHandler(() => {
-                    console.log(i);
                     return todoList.splice(i);
                   });
                 }}

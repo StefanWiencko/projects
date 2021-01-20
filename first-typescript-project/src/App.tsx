@@ -10,6 +10,7 @@ type TodoType = {
   email: string;
   function: string;
   msg: string;
+  id: number;
 };
 
 export const App: FC = () => {
@@ -17,10 +18,19 @@ export const App: FC = () => {
   const [finishedTodosList, setFinishedTodosList] = useState<TodoType[]>([]);
 
   const addTodoHandler: (x: TodoType) => void = (todoObject) => {
-    setActiveTodosList((): TodoType[] => [...activeTodosList, todoObject]);
+    // debugger;
+    const arr = [...activeTodosList, todoObject];
+    const mergedArr = arr;
+    const finalArr = mergedArr.map((el, i) => {
+      console.log(i);
+      el.id = i;
+      return el;
+    });
+    setActiveTodosList((): TodoType[] => finalArr);
   };
   const activeTodoHandler: (x: TodoType) => void = (todoObject) => {
-    setFinishedTodosList((): TodoType[] => [...finishedTodosList, todoObject]);
+    const arr = [...finishedTodosList, todoObject];
+    setFinishedTodosList((): TodoType[] => arr);
   };
 
   return (

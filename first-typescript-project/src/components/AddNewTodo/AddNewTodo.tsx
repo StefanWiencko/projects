@@ -7,6 +7,7 @@ type TodoType = {
   email: string;
   function: string;
   msg: string;
+  id: number;
 };
 
 interface AddNewTodoProps {
@@ -20,6 +21,7 @@ export const AddNewTodo: FC<AddNewTodoProps> = ({ addTodoHandler }) => {
     email: "",
     function: "",
     msg: "",
+    id: 0,
   });
   const [isValid, setIsValid] = useState(true);
 
